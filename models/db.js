@@ -1,1 +1,1 @@
-const connectDb = () => {};
+export const connectDb = () => {};
