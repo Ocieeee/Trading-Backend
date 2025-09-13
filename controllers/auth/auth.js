@@ -7,9 +7,8 @@ import {
   UnauthenticatedError,
 } from "../../errors/index.js";
 import jwt from "jsonwebtoken";
-import { use } from "react";
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
   const { email, password, register_token } = req.body;
 
   if (!email || !password || !register_token) {
@@ -40,7 +39,7 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = async (res, req) => {
+const login = async (res, req) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -100,7 +99,7 @@ export const login = async (res, req) => {
   });
 };
 
-const refreshtoken = async (req, res) => {
+export const refreshtoken = async (req, res) => {
   const { type, refresh_token } = req.body;
   if (!type || !["socket", "app"].includes(type) || !refresh_token) {
     throw new BadRequestError("Please provide all values");
@@ -174,4 +173,4 @@ const logout = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "user logged out!" });
 };
 
-export default { refreshtoken, logout };
+export { register, login, logout };
