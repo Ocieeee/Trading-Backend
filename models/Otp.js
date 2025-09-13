@@ -44,3 +44,6 @@ async function sendVerificationMail(email, otp, otp_type) {
     throw error;
   }
 }
+
+const OTP = mongoose.model("Otp", otpSchema);
+export default OTP;
